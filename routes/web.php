@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Todo;
 use App\Models\User;
+use App\Models\Category;
+use App\Http\Controllers\CategoryController;
 
 Route::resource('todo', TodoController::class)->except(['show']);
 
@@ -45,6 +47,8 @@ Route::middleware('auth')->group(function () {
         Route::patch('/user/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
         Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
     });
+
+    Route::resource('/category', CategoryController::class);
 
     
 });

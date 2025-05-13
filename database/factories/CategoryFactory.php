@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
-class TodoFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,9 +16,7 @@ class TodoFactory extends Factory
     {
         return [
             'user_id' => rand(1, 100),
-            'category_id' => rand(1, 100),
-            'title' => ucwords(fake()->sentence()),
-            'is_done' => rand(0, 1),
+            'title'   => ucwords(fake()->word()),
         ];
     }
 }
