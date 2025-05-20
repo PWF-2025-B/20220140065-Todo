@@ -7,7 +7,7 @@ use App\Models\User;
 
 
 
-class USerController extends Controller
+class UserController extends Controller
 {
     public function index()
 {
@@ -18,13 +18,13 @@ class USerController extends Controller
         $users = User::where(function ($query) use ($search) {
             $query->where('name', 'like', '%' . $search . '%')
                   ->orWhere('email', 'like', '%' . $search . '%');
-        })
-        ->orderBy('name')
-        ->where('id', '!=', 1)
-        ->paginate(20)
-        ->withQueryString();
-    } else {
-        $users = User::where('id', '!=', 1)
+        });
+        // ->orderBy('name')
+        // ->where('id', '!=', 1)
+        // ->paginate(20)
+        // ->withQueryString();
+    } else {    
+        $users = User::with('todos')-> where('id', '!=', 1)
             ->orderBy('name')
             ->paginate(20);
     }
